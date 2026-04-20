@@ -265,21 +265,26 @@ Download CV
 
 
 <div class="contact_right">
+    <form>
+        <input type="text" name="FirstName" placeholder="First Name" 
+               required 
+               pattern="[A-Za-zĄ-ź\s]+" 
+               title="Imię nie może zawierać cyfr.">
 
-<form name="submit-to-google-sheet">
+        <input type="text" name="LastName" placeholder="Last Name" 
+               required 
+               pattern="[A-Za-zĄ-ź\s]+" 
+               title="Nazwisko nie może zawierać cyfr.">
 
-<input type="text" name="Name" placeholder="Your Name" required>
+        <input type="email" name="Email" placeholder="Your Email" 
+               required>
 
-<input type="email" name="Email" placeholder="Your Email" required>
+        <textarea name="Message" rows="6" placeholder="Your Message" 
+                  required></textarea>
 
-<textarea name="Message" rows="6" placeholder="Your Message"></textarea>
-
-<button type="submit" class="btn">Submit</button>
-
-</form>
-
-<span id="msg"></span>
-
+        <button type="submit" class="btn">Submit</button>
+    </form>
+    <span id="msg"></span>
 </div>
 
 </div>
