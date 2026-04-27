@@ -50,3 +50,49 @@ seeSoftBtn.addEventListener("click", () => {
 function changeTheme(themeName) {
     document.getElementById('theme-style').setAttribute('href', themeName);
 }
+
+async function loadData() {
+        try{
+            const skillsRes = await fetch('skills.json');
+            const skillsData = await skillsRes.json();
+
+            const hardContainer = document.querySelector('.skills_list');
+            hardContainer.innerHTML = skillsData.hardSkills.map(skill => `
+            <div>
+                <h3>${skill.title}</h3>
+                <p>${skill.desc}</p>
+            </div>
+            `).join('');
+
+            const softContainer = document.querySelector('.soft_skills_list');
+            softContainer.innerHTML = skillsData.softSkills.map(skill => `
+            <div>
+                <h3>${skill.title}</h3>
+                <p>${skill.desc}</p>
+            </div>
+            `).join('');
+
+            const workRes = await fetch('work.json');
+            const workData = await workRes.json();
+
+           const projectsContainer = document.querySelector('.work_list');
+            projectsContainer.innerHTML = workData.projects.map(project => `
+            <div class="work">
+                <img src="${project.img}" alt="${project.title}">
+                <div class="layer">
+                    <h3>${project.title}</h3>
+                    <p>${project.desc}</p>
+                    <a href="${project.link}" target="_blank">
+                        <i class="fa-solid fa-link"></i>
+                    </a>
+                </div>
+            </div>
+        `).join('');
+
+        } catch (error) {
+            console.error('Błąd podczas ładowania danych:', error);
+        } 
+        
+}
+
+document.addEventListener('DOMContentLoaded', loadData);
