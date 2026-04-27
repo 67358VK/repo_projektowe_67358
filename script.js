@@ -51,38 +51,38 @@ function changeTheme(themeName) {
     document.getElementById('theme-style').setAttribute('href', themeName);
 }
 
-async function loadData() {
+async function loadData67358() {
         try{
-            const skillsRes = await fetch('skills.json');
-            const skillsData = await skillsRes.json();
+            const skillsRes67358 = await fetch('skills.json');
+            const skillsData67358 = await skillsRes67358.json();
 
-            const hardContainer = document.querySelector('.skills_list');
-            hardContainer.innerHTML = skillsData.hardSkills.map(skill => `
+            const hardContainer67358 = document.querySelector('.skills_list');
+            hardContainer67358.innerHTML = skillsData67358.hardSkills.map(skill67358 => `
             <div>
-                <h3>${skill.title}</h3>
-                <p>${skill.desc}</p>
+                <h3>${skill67358.title}</h3>
+                <p>${skill67358.desc}</p>
             </div>
             `).join('');
 
-            const softContainer = document.querySelector('.soft_skills_list');
-            softContainer.innerHTML = skillsData.softSkills.map(skill => `
+            const softContainer67358 = document.querySelector('.soft_skills_list');
+            softContainer67358.innerHTML = skillsData67358.softSkills.map(skill67358 => `
             <div>
-                <h3>${skill.title}</h3>
-                <p>${skill.desc}</p>
+                <h3>${skill67358.title}</h3>
+                <p>${skill67358.desc}</p>
             </div>
             `).join('');
 
-            const workRes = await fetch('work.json');
-            const workData = await workRes.json();
+            const workRes67358 = await fetch('work.json');
+            const workData67358 = await workRes67358.json();
 
-           const projectsContainer = document.querySelector('.work_list');
-            projectsContainer.innerHTML = workData.projects.map(project => `
+           const projectsContainer67358 = document.querySelector('.work_list');
+            projectsContainer67358.innerHTML = workData67358.projects.map(project67358 => `
             <div class="work">
-                <img src="${project.img}" alt="${project.title}">
+                <img src="${project67358.img}" alt="${project67358.title}">
                 <div class="layer">
-                    <h3>${project.title}</h3>
-                    <p>${project.desc}</p>
-                    <a href="${project.link}" target="_blank">
+                    <h3>${project67358.title}</h3>
+                    <p>${project67358.desc}</p>
+                    <a href="${project67358.link}" target="_blank">
                         <i class="fa-solid fa-link"></i>
                     </a>
                 </div>
@@ -95,4 +95,4 @@ async function loadData() {
         
 }
 
-document.addEventListener('DOMContentLoaded', loadData);
+document.addEventListener('DOMContentLoaded', loadData67358);
