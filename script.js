@@ -154,3 +154,35 @@ function removeNoteFromStorage(text) {
     notes = notes.filter(note => note !== text);
     localStorage.setItem('myNotes', JSON.stringify(notes));
 }
+
+//BACKEND
+
+const backendForm = document.getElementById('contact-form-backend');
+const status = document.getElementById('form-status');
+
+backendForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const data = new FormData(e.target);
+
+    try {
+        const response = await fetch(e.target.action, {
+            method: 'POST',
+            body: data,
+            headers: {
+                'Accept': 'application/json'
+            }
+        });
+
+        if (response.ok) {
+            status.innerHTML = "Dziękujemy! Wiadomość została zapisana na serwerze.";
+            status.style.color = "#61b752";
+            backendForm.reset();
+        } else {
+            status.innerHTML = "Ops! Wystąpił błąd przy wysyłce.";
+            status.style.color = "#ff004f";
+        }
+    } catch (error) {
+        status.innerHTML = "Błąd połączenia z serwerem.";
+        status.style.color = "#ff004f";
+    }
+});
