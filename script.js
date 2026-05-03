@@ -96,3 +96,61 @@ async function loadData67358() {
 }
 
 document.addEventListener('DOMContentLoaded', loadData67358);
+
+
+//Local storage
+
+const noteForm = document.getElementById('note-form');
+const noteInput = document.getElementById('note-input');
+const notesList = document.getElementById('notes-list');
+
+document.addEventListener('DOMContentLoaded', () => {
+    const savedNotes = JSON.parse(localStorage.getItem('myNotes')) || [];
+    savedNotes.forEach(noteText => renderNote(noteText));
+});
+
+noteForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const noteText = noteInput.value.trim();
+
+    if (noteText) {
+        renderNote(noteText);
+        saveNote(noteText); 
+        noteInput.value = '';
+    }
+});
+
+function renderNote(text) {
+    const li = document.createElement('li');
+    li.style.background = "#262626";
+    li.style.padding = "15px";
+    li.style.marginBottom = "10px";
+    li.style.borderRadius = "6px";
+    li.style.display = "flex";
+    li.style.justifyContent = "space-between";
+    li.style.alignItems = "center";
+
+    li.innerHTML = `
+        <span>${text}</span>
+        <i class="fa-solid fa-trash" style="cursor:pointer; color:#ff004f;"></i>
+    `;
+
+    li.querySelector('.fa-trash').addEventListener('click', () => {
+        li.remove();
+        removeNoteFromStorage(text);
+    });
+
+    notesList.appendChild(li);
+}
+
+function saveNote(text) {
+    const notes = JSON.parse(localStorage.getItem('myNotes')) || [];
+    notes.push(text);
+    localStorage.setItem('myNotes', JSON.stringify(notes));
+}
+
+function removeNoteFromStorage(text) {
+    let notes = JSON.parse(localStorage.getItem('myNotes')) || [];
+    notes = notes.filter(note => note !== text);
+    localStorage.setItem('myNotes', JSON.stringify(notes));
+}
